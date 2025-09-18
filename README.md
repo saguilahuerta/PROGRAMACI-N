@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Online - Maquillaje Glamour</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff7f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #e91e63;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #f06292;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      color: #ffe4ec;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    /* Secciones como pestañas */
+    .tab-content {
+      display: none;
+      animation: fade 0.5s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    /* Productos */
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .producto {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+    }
+
+    .producto img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      background-color: #f5f5f5;
+    }
+
+    .producto h3 {
+      margin: 10px 0;
+      color: #e91e63;
+    }
+
+    .producto p {
+      margin: 5px 0;
+    }
+
+    .producto button {
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .producto button:hover {
+      background-color: #c2185b;
+    }
+
+    /* Carrito */
+    .carrito {
+      margin-top: 20px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .carrito h2 {
+      text-align: center;
+      color: #e91e63;
+    }
+
+    .carrito ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .carrito li {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    footer {
+      background-color: #e91e63;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+ <header>
+  <div class="header-content">
+    <div class="header-text">
+      <h1>✨ Maquillaje Glamour ✨</h1>
+      <p>Tu tienda online de confianza</p>
+    </div>
+    <!-- Espacio para tu imagen -->
+    <div class="header-img">
+      <img src="Iniciopagina.jpeg" alt="Imagen principal maquillaje">
+    </div>
+  </div>
+</header>
+
+
+  <nav>
+    <a onclick="abrirTab('productos')">Productos</a>
+    <a onclick="abrirTab('tips')">Tips</a>
+    <a onclick="abrirTab('contacto')">Contacto</a>
+    <a onclick="abrirTab('carrito')">Carrito</a>
+  </nav>
+
+  <div class="container">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Maquillaje</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* Contenedor del carrusel */
+    .carrusel-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    /* Scroll horizontal */
+    .productos-scroll {
+      display: flex;
+      overflow-x: auto;   
+      scroll-snap-type: x mandatory;
+      gap: 20px;
+      padding: 20px;
+      scroll-behavior: smooth;
+    }
+
+    .producto {
+      flex: 0 0 auto;
+      width: 200px;
+      text-align: center;
+      scroll-snap-align: center;
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .producto img {
+      display: block;
+      margin: 0 auto;
+      max-width: 150px;
+      border-radius: 10px;
+    }
+
+    .producto h3 {
+      margin: 10px 0 5px;
+    }
+
+    .producto p {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .producto button {
+      background: #ff4d88;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .producto button:hover {
+      background: #e63973;
+    }
+
+    /* Botones de navegación */
+    .carrusel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 24px;
+      border-radius: 50%;
+      z-index: 10;
+    }
+
+    .carrusel-btn.left {
+      left: 10px;
+    }
+
+    .carrusel-btn.right {
+      right: 10px;
+    }
+
+    .carrusel-btn:hover {
+      background: rgba(0,0,0,0.8);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Productos -->
+<section id="productos" class="tab-content active">
+  <h2>🌸 Nuestros Productos 🌸</h2>
+
+  <div class="carrusel-container">
+    <button class="carrusel-btn left" onclick="moverCarrusel(-1)">&#10094;</button>
+
+    <div class="productos-scroll" id="carrusel">
+      <div class="producto">
+        <img src="Labial rosa.jpeg" alt="Labial">
+        <h3>Labial Rosa</h3>
+        <p>$250 MXN</p>
+        <button onclick="agregarAlCarrito('Labial Rosa', 250, 'Labial rosa.jpeg')">Agregar al carrito</button>
+      </div>
+
+      <div class="producto">
+        <img src="Base maquillaje.jpeg" alt="Base">
+        <h3>Base Líquida</h3>
+        <p>$380 MXN</p>
+        <button onclick="agregarAlCarrito('Base Líquida', 380, 'Base maquillaje.jpeg')">Agregar al carrito</button>
+      </div>
+
+      <div class="producto">
+        <img src="Sombras.jpeg" alt="Sombras">
+        <h3>Paleta de Sombras</h3>
+        <p>$450 MXN</p>
+        <button onclick="agregarAlCarrito('Paleta de Sombras', 450, 'Sombras.jpeg')">Agregar al carrito</button>
+      </div>
+
+      <div class="producto">
+        <img src="Polvo compacto.jpeg" alt="Polvo Compacto">
+        <h3>Polvo Compacto</h3>
+        <p>$180 MXN</p>
+        <button onclick="agregarAlCarrito('Polvo Compacto',180, 'Polvo compacto.jpeg')">Agregar al carrito</button>
+      </div>
+
+      <div class="producto">
+        <img src="Corrector.jpeg" alt="Corrector">
+        <h3>Corrector</h3>
+        <p>$220 MXN</p>
+        <button onclick="agregarAlCarrito('Corrector', 220, 'Corrector.jpeg')">Agregar al carrito</button>
+      </div>
+
+      <div class="producto">
+        <img src="Gel de Cejas.jpeg" alt="Gel de Cejas">
+        <h3>Gel de Cejas</h3>
+        <p>$300 MXN</p>
+        <button onclick="agregarAlCarrito('Gel de Cejas', 300, 'Gel de Cejas.jpeg')">Agregar al carrito</button>
+      </div>
+    </div>
+
+    <button class="carrusel-btn right" onclick="moverCarrusel(1)">&#10095;</button>
+  </div>
+</section>
+
+<!-- Carrito -->
+<section id="carrito" class="tab-content">
+  <h2>🛒 Carrito de Compras</h2>
+  <div id="listaCarrito"></div>
+</section>
+
+<script>
+  function moverCarrusel(direccion) {
+    const carrusel = document.getElementById("carrusel");
+    const scrollAmount = 220; // ancho de producto + margen
+    carrusel.scrollBy({
+      left: direccion * scrollAmount,
+      behavior: "smooth"
+    });
+  }
+
+  function agregarAlCarrito(producto, precio, imagen) {
+    const listaCarrito = document.getElementById("listaCarrito");
+
+    // Crear contenedor del producto
+    const item = document.createElement("div");
+    item.classList.add("item-carrito");
+
+    // Agregar imagen
+    const img = document.createElement("img");
+    img.src = imagen;
+    img.alt = producto;
+
+    // Nombre y precio
+    const info = document.createElement("p");
+    info.textContent = producto + " - $" + precio + " MXN";
+
+    // Botón eliminar
+    const btnEliminar = document.createElement("button");
+    btnEliminar.textContent = "❌ Eliminar";
+    btnEliminar.onclick = function () {
+      listaCarrito.removeChild(item);
+    };
+
+    // Insertar elementos en el item
+    item.appendChild(img);
+    item.appendChild(info);
+    item.appendChild(btnEliminar);
+
+    // Agregar al carrito
+    listaCarrito.appendChild(item);
+  }
+</script>
+
+<style>
+  #carrito {
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid #ff69b4;
+    border-radius: 10px;
+    background: #fff0f6;
+  }
+
+  .item-carrito {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .item-carrito img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .item-carrito button {
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .item-carrito button:hover {
+    background: #d9365e;
+  }
+</style>
+
+
+</body>
+</html>
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Maquillaje</title>
+  <style>
+    /* Sección Tips */
+    #tips {
+      padding: 40px;
+      background: #fff0f6;
+      border-radius: 20px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .tips-title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #d63384;
+    }
+
+    .tips-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .tip-card {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tip-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .tip-icon {
+      width: 150px;  /* 👈 más grande */
+      height: auto;  /* 👈 mantiene proporción */
+      margin-bottom: 15px;
+      border-radius: 12px;  /* 👈 esquinas redondeadas */
+      object-fit: cover;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    }
+
+    .tip-card h3 {
+      color: #b8005c;
+      margin-bottom: 10px;
+    }
+
+    .tip-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+ <section id="tips" class="tab-content">
+  <h2 class="tips-title">💄 Tips de Maquillaje 💄</h2>
+  
+  <div class="tips-container">
+    <div class="tip-card">
+      <img 
+        src="Limpiadorfacial.jpeg"
+        alt="Limpieza facial" class="tip-icon">
+      <h3>Hidrata tu piel</h3>
+      <p>Antes de aplicar maquillaje, usa una crema o sérum para que tu piel luzca fresca y saludable.</p>
+    </div>
+
+    <div class="tip-card">
+      <img 
+        src="Baseligera .jpeg"
+        alt="Base ligera" class="tip-icon">
+      <h3>Base ligera</h3>
+      <p>Opta por bases fluidas o BB creams para un acabado más natural.</p>
+    </div>
+
+    <div class="tip-card">
+      <img 
+        src="Iluminador .jpeg"
+        alt="Iluminador" class="tip-icon">
+      <h3>Iluminador estratégico</h3>
+      <p>Aplica iluminador en puntos clave para un brillo radiante.</p>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Contacto -->
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Maquillaje - Contacto</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff8fb;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* Estilo del formulario */
+    .form-contacto {
+      display: flex;
+      flex-direction: column;
+      max-width: 450px;
+      margin: 20px auto;
+      gap: 15px;
+      background: #fff0f6;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .form-contacto label {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .form-contacto input,
+    .form-contacto select,
+    .form-contacto textarea {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border 0.3s;
+    }
+
+    .form-contacto input:focus,
+    .form-contacto select:focus,
+    .form-contacto textarea:focus {
+      border: 1px solid #ff4d88;
+      outline: none;
+    }
+
+    .form-contacto button {
+      background: #ff4d88;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .form-contacto button:hover {
+      background: #e63973;
+    }
+
+    .info-contacto {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sección de contacto -->
+  <section id="contacto" class="tab-content">
+    <h2>📩 Contáctanos 📩</h2>
+    
+    <div class="info-contacto">
+      <p>Correo: contacto@maquillajeglamour.com</p>
+      <p>Teléfono: +52 55 1234 5678</p>
+    </div>
+
+    <!-- Formulario de contacto -->
+    <form action="mailto:contacto@maquillajeglamour.com" method="post" enctype="text/plain" class="form-contacto">
+      
+      <label for="nombre">Nombre completo:</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+
+      <label for="correo">Correo electrónico:</label>
+      <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+
+      <label for="telefono">Teléfono:</label>
+      <input type="tel" id="telefono" name="telefono" placeholder="+52 55 1234 5678">
+
+      <label for="satisfaccion">¿Qué tan satisfecho estás con nuestros productos?</label>
+      <select id="satisfaccion" name="satisfaccion" required>
+        <option value="">Selecciona una opción</option>
+        <option value="Muy satisfecho">😍 Muy satisfecho</option>
+        <option value="Satisfecho">😊 Satisfecho</option>
+        <option value="Neutral">😐 Neutral</option>
+        <option value="Insatisfecho">😕 Insatisfecho</option>
+        <option value="Muy insatisfecho">😡 Muy insatisfecho</option>
+      </select>
+
+      <label for="mensaje">Mensaje o comentarios:</label>
+      <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe aquí tu mensaje..." required></textarea>
+
+      <button type="submit">📨 Enviar</button>
+    </form>
+  </section>
+
+</body>
+</html>
+    <!-- Carrito -->
+    <section id="carrito" class="tab-content">
+      <div class="carrito">
+        <h2>🛒 Carrito de Compras</h2>
+        <ul id="lista-carrito"></ul>
+        <p><strong>Total: $<span id="total">0</span> MXN</strong></p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Maquillaje Glamour | Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    // Manejo de Tabs
+    function abrirTab(tabId) {
+      let tabs = document.querySelectorAll(".tab-content");
+      tabs.forEach(tab => tab.classList.remove("active"));
+      document.getElementById(tabId).classList.add("active");
+    }
+
+    // Carrito
+    let carrito = [];
+    let total = 0;
+
+    function agregarAlCarrito(producto, precio) {
+      carrito.push({ producto, precio });
+      total += precio;
+      actualizarCarrito();
+      abrirTab("carrito"); // se abre carrito al agregar
+    }
+
+    function actualizarCarrito() {
+      const lista = document.getElementById("lista-carrito");
+      const totalElemento = document.getElementById("total");
+      lista.innerHTML = "";
+      carrito.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.producto} - $${item.precio} MXN`;
+        lista.appendChild(li);
+      });
+      totalElemento.textContent = total;
+    }
+  </script>
+</body>
+</html>
+
+
+git init
+git add .
+git commit -m "Primer commit"
+git branch -M main
+git remote add origin https://github.com/saguilahuerta/PROGRAMACI-N.git
+git push -u origin main
+
